@@ -1,0 +1,5 @@
+<div *ngFor="let task of tasks">
+  <h6>{{task.title}}</h6>
+  <p>{{task.description}}</p>
+  <button (click)="getTask(task._id)">Get task by ID</button>
+</div>
