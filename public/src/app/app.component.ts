@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { HttpService } from './http.service';
 export class AppComponent {
   title = 'Amanda';
   tasks = [];
+  show = false;
   constructor(private _httpService: HttpService) { };
 
   ngOnInit(): void {
-    this.getTasks();
   }
 
   getTasks() {
@@ -22,10 +22,8 @@ export class AppComponent {
     })
   }
 
-  getTask(_id) {
-    let observable = this._httpService.getTask(_id);
-    observable.subscribe(data => {
-      console.log(data);
-    })
+  getTask(task) {
+    task.show = true;
   }
+
 }
