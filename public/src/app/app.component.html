@@ -30,12 +30,50 @@
     <div class="col-sm-8">
       <div *ngFor="let task of tasks" class="card p-3 m-2">
           <h6>Title: {{task.title}}</h6>
-          <button type="button" class="btn btn-secondary float-right" (click)="getTask(task)">Show More</button>
+          <button type="button" class="btn btn-primary m-2" (click)="showEdit(task)">Edit</button>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+              <div class="col-sm-10">
+                <form *ngIf="task.edit" (submit)="editTask(task)">
+                    <input type="text" class="form-control m-2" name="task.title" [(ngModel)]="task.title">
+                    <input type="text" class="form-control m-2" name="task.description" [(ngModel)]="task.description">
+                    <input type="submit" class="form-control m-2 btn btn-success" role="button" value="Save">
+                </form>
+              </div>
+            <div class="col-sm-1"></div>
+
+          </div>
+
+          <button type="button" class="btn btn-danger m-2" (click)="deleteTask(task)">Delete</button>
+          <button type="button" class="btn btn-secondary float-right m-2" (click)="getTask(task)">{{showmore}}</button>
           <p *ngIf="task.show">Description: {{task.description}}</p>
       </div>
       </div>
     <div class="col-sm-4"></div>
   </div>
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <h4 class="display-4 text-center">Add New Task</h4>
+      </div>
+    <div class="col-sm-4"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <form (submit)="addTask()">
+            <p> {{ newTask | json }} </p>
+            <input type="text" class="form-control m-2" name="newTask.title" [(ngModel)]="newTask.title">
+            <input type="text" class="form-control m-2" name="newTask.description" [(ngModel)]="newTask.description">
+            <input type="submit" class="form-control m-2 btn btn-success" role="button" value="Create Task">
+        </form>
+      </div>
+    <div class="col-sm-2"></div>
+  </div>
+
   </div>
 </body>
 </html>
