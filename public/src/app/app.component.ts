@@ -12,6 +12,7 @@ export class AppComponent {
   show = false;
   newTask = {};
   showmore = "Show More"
+  selectedTask = {};
   constructor(private _httpService: HttpService) { };
 
   ngOnInit(): void {
@@ -64,6 +65,10 @@ export class AppComponent {
       this.getTasks();
     }
     )
+  }
+
+  taskTo2ndC(task) {
+    this.selectedTask = task;
   }
 
 }
